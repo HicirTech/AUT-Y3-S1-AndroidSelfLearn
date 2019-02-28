@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Demo3</string>
+    <string name="button_text">Ask</string>
+    <string name="title_text">Make everyday decisions easier</string>
+</resources>

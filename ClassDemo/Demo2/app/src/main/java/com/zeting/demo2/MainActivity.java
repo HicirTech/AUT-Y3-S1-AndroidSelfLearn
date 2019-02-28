@@ -49,6 +49,6 @@ public class MainActivity extends AppCompatActivity {
     private int getRandomDice()
     {
         Random randomNumberGen = new Random();
-        return randomNumberGen.nextInt(6);
+        return randomNumberGen.nextInt(5);
     }
 }
