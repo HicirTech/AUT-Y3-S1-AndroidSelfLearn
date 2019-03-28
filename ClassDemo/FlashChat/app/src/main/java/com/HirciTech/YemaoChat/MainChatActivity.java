@@ -10,6 +10,8 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -20,6 +22,7 @@ public class MainChatActivity extends AppCompatActivity {
     private String mDisplayName;
     private ListView mChatListView;
     private EditText mInputText;
+    private ChatListAdapter mAdapter;
     private ImageButton mSendButton;
 
     private DatabaseReference mDatabaseReference;
@@ -60,12 +63,14 @@ public class MainChatActivity extends AppCompatActivity {
 
     // TODO: Retrieve the display name from the Shared Preferences
     private  void setupDisplayName(){
-        SharedPreferences pref = getSharedPreferences(RegisterActivity.DISPLAY_NAME_KEY,MODE_PRIVATE);
-        this.mDisplayName = pref.getString(RegisterActivity.DISPLAY_NAME_KEY,null);
-        if(mDisplayName==null)
-        {
-            mDisplayName="Toilet";
-        }
+//        SharedPreferences pref = getSharedPreferences(RegisterActivity.DISPLAY_NAME_KEY,MODE_PRIVATE);
+//        this.mDisplayName = pref.getString(RegisterActivity.DISPLAY_NAME_KEY,null);
+//        if(mDisplayName==null)
+//        {
+//            mDisplayName="No name";
+//        }
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        mDisplayName = user.getDisplayName();
     }
 
 
@@ -75,7 +80,7 @@ public class MainChatActivity extends AppCompatActivity {
         if(message.length()>0)
         {
             InstandMessage chat = new InstandMessage(message,mDisplayName);
-            mDatabaseReference.child("messages").push().setValue(chat); //Push to
+            mDatabaseReference.child("messages").push().setValue(chat); //Push to firebase
             mInputText.setText("");
         }
         // TODO: Grab the text the user typed in and push the message to Firebase
@@ -83,7 +88,13 @@ public class MainChatActivity extends AppCompatActivity {
     }
 
     // TODO: Override the onStart() lifecycle method. Setup the adapter here.
-
+    @Override
+    public void onStart()
+    {
+        super.onStart();
+        mAdapter=new ChatListAdapter(this,mDatabaseReference,mDisplayName);
+        mChatListView.setAdapter(mAdapter);
+    }
 
     @Override
     public void onStop() {
@@ -91,6 +102,7 @@ public class MainChatActivity extends AppCompatActivity {
 
         // TODO: Remove the Firebase event listener on the adapter.
 
+        mAdapter.cleanup();
     }
 
 }

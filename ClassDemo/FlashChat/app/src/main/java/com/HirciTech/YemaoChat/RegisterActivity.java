@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -18,6 +19,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -153,9 +156,28 @@ public class RegisterActivity extends AppCompatActivity {
 
     // TODO: Save the display name to Shared Preferences
     private void saveDisplayName(){
+//        String displayName = mUsernameView.getText().toString();
+//        SharedPreferences pref = getSharedPreferences(CHAT_PREFS,0);
+//        pref.edit().putString(this.DISPLAY_NAME_KEY,displayName).apply();
+        FirebaseUser user = mAuth.getCurrentUser();
         String displayName = mUsernameView.getText().toString();
-        SharedPreferences pref = getSharedPreferences(CHAT_PREFS,0);
-        pref.edit().putString(this.DISPLAY_NAME_KEY,displayName).apply();
+
+        if (user !=null) {
+            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                    .setDisplayName(displayName)
+                    .build();
+
+            user.updateProfile(profileUpdates)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Log.d("Yemao:", "User name updated.");
+                            }
+                        }
+                    });
+
+        }
     }
 
     // TODO: Create an alert dialog to show in case registration failed
