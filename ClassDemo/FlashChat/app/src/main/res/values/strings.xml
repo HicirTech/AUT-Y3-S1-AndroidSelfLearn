@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">腋毛聊天</string>
+    <string name="app_name">YemaoChat</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_username">Username</string>
     <string name="prompt_password">Password</string>
@@ -14,8 +14,11 @@
     <string name="error_invalid_password">Password too short or does not match</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
+    <string name="permission_rationale" translatable="false">"Contacts permissions are needed for providing email
         completions."
     </string>
     <string name="sample_message">Hello!</string>
+    <string name="Welcoming">This is a login layer</string>
+    <string name="reg_hit">This is a register layer</string>
+    <string name="yemaoWellcome">Welcome to Yemao Chat</string>
 </resources>

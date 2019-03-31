@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">腋毛聊天</string>
+    <string name="prompt_email">给我输入邮箱</string>
+    <string name="prompt_username">给我输入用户名</string>
+    <string name="prompt_password">把你的密码告诉我</string>
+    <string name="prompt_password_again">再打一次你的密码</string>
+    <string name="prompt_msg">输入信息</string>
+    <string name="action_sign_in">登录还是注册</string>
+    <string name="action_register">注册</string>
+    <string name="action_sign_in_short">登录</string>
+    <string name="action_sign_up">注册</string>
+    <string name="action_send">发送</string>
+    <string name="error_invalid_email">你的邮箱地址有点小毛病</string>
+    <string name="error_invalid_password">你的密码太他妈简单了</string>
+    <string name="error_incorrect_password">小伙子,你的密码不对</string>
+    <string name="error_field_required">你得把这填上</string>
+    <string name="sample_message">你好!</string>
+    <string name="Welcoming">这是个登录界面</string>
+    <string name="reg_hit">这是个注册界面</string>
+    <string name="yemaoWellcome">欢迎使用腋毛聊天</string>
+</resources>
