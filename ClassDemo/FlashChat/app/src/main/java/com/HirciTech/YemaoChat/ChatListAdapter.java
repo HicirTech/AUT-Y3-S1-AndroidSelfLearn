@@ -55,7 +55,7 @@ public class ChatListAdapter extends BaseAdapter {
 
     public ChatListAdapter(Activity activity, DatabaseReference databaseReference, String displayName) {
         mActivity = activity;
-        mDatabaseReference = databaseReference.child("messages");
+        mDatabaseReference = databaseReference.child("messagesA");
         mDisplayName = displayName;
         mDataSnapshots = new ArrayList<>();
         mDatabaseReference.addChildEventListener(mChildEventListener);

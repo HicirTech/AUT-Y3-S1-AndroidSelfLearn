@@ -80,7 +80,7 @@ public class MainChatActivity extends AppCompatActivity {
         if(message.length()>0)
         {
             InstandMessage chat = new InstandMessage(message,mDisplayName);
-            mDatabaseReference.child("messages").push().setValue(chat); //Push to firebase
+            mDatabaseReference.child("messagesA").push().setValue(chat); //Push to firebase
             mInputText.setText("");
         }
         // TODO: Grab the text the user typed in and push the message to Firebase
